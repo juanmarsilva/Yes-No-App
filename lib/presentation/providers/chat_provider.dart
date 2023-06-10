@@ -7,5 +7,14 @@ class ChatProvider extends ChangeNotifier {
     Message(text: 'Queres salir?', fromWho: FromWho.me),
   ];
 
-  Future<void> sendMessage() async {}
+  Future<void> sendMessage(String text) async {
+    final newMessage = Message(text: text, fromWho: FromWho.me);
+
+    messageList.add(newMessage);
+
+    /* 
+      Con esto Flutter notifica a todos los lugares donde se este escuchando sobre este cambio, es similar al set  State  
+    */
+    notifyListeners(); 
+  }
 }
